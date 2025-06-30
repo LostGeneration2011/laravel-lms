@@ -20,12 +20,12 @@ class ProfileController extends Controller
     use FileUpload;
 
     function index() : View {
-       return view('frontend.student-dashboard.profile.index');
+       return view('frontend.student-dashboard.profile.index'); 
     }
 
     function instructorIndex() : View {
-        // $gateways = PayoutGateway::where('status', 1)->get();
-       return view('frontend.instructor-dashboard.profile.index');
+        $gateways = PayoutGateway::where('status', 1)->get();
+       return view('frontend.instructor-dashboard.profile.index', compact('gateways')); 
     }
 
     function profileUpdate(ProfileUpdateRequest $request) : RedirectResponse {
@@ -66,23 +66,23 @@ class ProfileController extends Controller
         $user->linkedin = $request->linkedin;
         $user->website = $request->website;
         $user->save();
-
+        
         notyf()->success('Updated Successfully');
         return redirect()->back();
     }
 
-    // function updateGatewayInfo(Request $request)
-    // {
-    //     InstructorPayoutInformation::updateOrCreate(
-    //         ['instructor_id' => user()->id],
-    //         [
-    //             'gateway' => $request->gateway,
-    //             'information' => $request->information
-    //         ]
-    //      );
+    function updateGatewayInfo(Request $request)
+    {
+        InstructorPayoutInformation::updateOrCreate(
+            ['instructor_id' => user()->id],
+            [
+                'gateway' => $request->gateway,
+                'information' => $request->information
+            ]
+         );
 
-    //      notyf()->success('Updated Successfully');
+         notyf()->success('Updated Successfully');
 
-    //      return redirect()->back();
-    // }
+         return redirect()->back();
+    }
 }

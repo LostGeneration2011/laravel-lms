@@ -27,7 +27,7 @@ class InstructorRequestRejectMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your request to become instructor has been rejected',
+            subject: 'Your Request to become instructor has been rejected',
         );
     }
 

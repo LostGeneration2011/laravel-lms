@@ -53,29 +53,29 @@
                         </div>
                     @endif
 
-                    {{-- @if (user()->role != 'instructor')
+                    @if (user()->role != 'instructor')
                         <div class="text-end">
                             <a href="{{ route('student.become-instructor') }}" class="btn btn-primary">Become a
                                 Instructor</a>
                         </div>
-                    @endif --}}
+                    @endif
                     <div class="row">
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Pending Courses</h6>
-                                {{-- <h3>{{ $pendingCourses }}</h3> --}}
+                                <h3>{{ $pendingCourses }}</h3>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Approved Courses</h6>
-                                {{-- <h3>{{ $approvedCourses }}</h3> --}}
+                                <h3>{{ $approvedCourses }}</h3>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Rejected Courses</h6>
-                                {{-- <h3>{{ $rejectedCourses }}</h3> --}}
+                                <h3>{{ $rejectedCourses }}</h3>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                 <th>Earning</th>
 
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @forelse($orderItems as $orderItem)
                                     <tr>
                                         <td>{{ $orderItem->course->title }}</td>
@@ -107,7 +107,7 @@
                                         <td>No Data Found</td>
                                     </tr>
                                 @endforelse
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

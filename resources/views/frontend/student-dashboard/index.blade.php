@@ -70,24 +70,24 @@
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Enrolled Courses</h6>
-                                {{-- <h3>{{ $userCourses }}</h3> --}}
+                                <h3>{{ $userCourses }}</h3>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Total Reviews</h6>
-                                {{-- <h3>{{ $reviewCount }}</h3> --}}
+                                <h3>{{ $reviewCount }}</h3>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 wow fadeInUp">
                             <div class="wsus__dash_earning">
                                 <h6>Total Orders</h6>
-                                {{-- <h3>{{ $orderCount }}</h3> --}}
+                                <h3>{{ $orderCount }}</h3>
                             </div>
                         </div>
                     </div>
 
-
+                    
                     <div class="card mt-4">
                         <table class="table">
                             <thead>
@@ -99,7 +99,7 @@
                                 <th>Action</th>
 
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @forelse($orders as $order)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -115,11 +115,11 @@
                                         <td>No Data Found</td>
                                     </tr>
                                 @endforelse
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
 
-
+                 
                 </div>
             </div>
         </div>

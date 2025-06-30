@@ -191,7 +191,7 @@ textarea {
 }
 
 .nav-item.dropdown.active > .dropdown-menu {
-    display: block !important;
+    display: block !important;  
 }
 
 .dropdown-item.active {

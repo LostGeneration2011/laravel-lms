@@ -1,5 +1,3 @@
-
-
 @extends('frontend.layouts.master')
 
 @section('content')
@@ -21,8 +19,9 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
-                              <!-- Session Status -->
+                            <!-- Session Status -->
                             <x-auth-session-status class="mb-4" :status="session('status')" />
+
                             <form action="{{ route('password.email') }}" method="POST">
                                 @csrf
                                 <h2>Forget Password<span>!</span></h2>
@@ -35,10 +34,10 @@
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>
-
-
+                                         
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
+                                            
                                             <button type="submit" class="common_btn">Email Password Reset Link</button>
                                         </div>
                                     </div>

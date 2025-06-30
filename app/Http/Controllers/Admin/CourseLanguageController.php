@@ -13,27 +13,24 @@ use Str;
 class CourseLanguageController extends Controller
 {
     /**
-     * Hiển thị biểu mẫu để tạo một tài nguyên mới."
-
-.
+     * Display a listing of the resource.
      */
-    public function index():View
+    public function index() : View
     {
         $languages = CourseLanguage::paginate(15);
-        return view('admin.course.course-language.index',compact('languages'));
+        return view('admin.course.course-language.index', compact('languages'));
     }
 
     /**
-     * Hiển thị biểu mẫu để tạo một tài nguyên mới.
+     * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
         return view('admin.course.course-language.create');
-
     }
 
     /**
-     * Lưu trữ tài nguyên mới được tạo vào cơ sở dữ liệu.
+     * Store a newly created resource in storage.
      */
     public function store(Request $request) : RedirectResponse
     {
@@ -48,7 +45,6 @@ class CourseLanguageController extends Controller
 
         return to_route('admin.course-languages.index');
     }
-
 
     /**
      * Display the specified resource.
@@ -66,7 +62,6 @@ class CourseLanguageController extends Controller
         return view('admin.course.course-language.edit', compact('course_language'));
     }
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -82,7 +77,6 @@ class CourseLanguageController extends Controller
         return to_route('admin.course-languages.index');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -97,5 +91,4 @@ class CourseLanguageController extends Controller
             return response(['message' => 'Something went wrong!'], 500);
         }
     }
-
 }

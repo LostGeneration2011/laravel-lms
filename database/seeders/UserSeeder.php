@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -13,21 +13,32 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users =[
-            [
-                'name' => 'Anh Dinh',
-                'email' => 'student@gmail.com',
-                'password' => bcrypt(12345678),
-                'role' => 'student',
-            ],
+        // Shared password for all seeded users
+        $password = Hash::make('12345678');
 
-            [
-                'name' => 'Instructor',
-                'email' => 'instructor@gmail.com',
-                'password' => bcrypt(12345678),
-                'role' => 'instructor',
-            ],
-        ];
+        $users = [];
+
+        // Create 10 student accounts
+        for ($i = 1; $i <= 10; $i++) {
+            $users[] = [
+                'name'           => "Student {$i}",
+                'email'          => "student{$i}@example.com",
+                'password'       => $password,
+                'role'           => 'student',
+                'approve_status' => 'approved',
+            ];
+        }
+
+        // Create 5 instructor accounts
+        for ($i = 1; $i <= 5; $i++) {
+            $users[] = [
+                'name'           => "Instructor {$i}",
+                'email'          => "instructor{$i}@example.com",
+                'password'       => $password,
+                'role'           => 'instructor',
+                'approve_status' => 'approved',
+            ];
+        }
 
         User::insert($users);
     }

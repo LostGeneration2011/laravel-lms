@@ -686,31 +686,36 @@ $(function () {
     });
 
 
-    // sidebar category dropdown
+    $('.categoty_list li').each(function () {
+        var submenu = $(this).find('.wsus__sidebar_sub_category');
+    
+        // Set the initial height for items with the active class
+        if ($(this).hasClass("active")) {
+            var initialHeight = 0;
+            submenu.find('div').each(function () {
+                initialHeight += $(this).outerHeight(true);
+            });
+            submenu.css("height", initialHeight + "px");
+        }
+    });
+    
     $('.categoty_list li').on("click", function () {
         var isActive = $(this).hasClass("active");
         var submenu = $(this).find('.wsus__sidebar_sub_category');
-
-        // get the height of the child of submenu
         var dynamicHeight = 0;
-        $(submenu).find('div').each(function () {
+    
+        // Get the height of submenu content dynamically
+        submenu.find('div').each(function () {
             dynamicHeight += $(this).outerHeight(true);
         });
-
-        $(".categoty_list li").removeClass("active");
-
-        // and remove the height of all the submenu
-        $(".categoty_list li .wsus__sidebar_sub_category").css("height", "0px");
-
-        // toggle the button
-        if ($(this).hasClass("active")) {
-            $(".categoty_list li").removeClass("active");
-            $(submenu).css("height", "0px");
-        }
-
-        if (!isActive) {
+    
+        // Toggle active state and submenu height
+        if (isActive) {
+            $(this).removeClass("active");
+            submenu.css("height", "0px");
+        } else {
             $(this).addClass("active");
-            $(submenu).css("height", dynamicHeight + "px");
+            submenu.css("height", dynamicHeight + "px");
         }
     });
 
@@ -718,8 +723,8 @@ $(function () {
     // Range Slider
     $('.basic').alRangeSlider();
     const options = {
-        range: { min: 10, max: 1000, step: 1 },
-        initialSelectedValues: { from: 200, to: 800 },
+        range: { min: 0, max: 5000, step: 1 },
+        initialSelectedValues: { from: 0, to: 5000 },
         grid: { minTicksStep: 1, marksStep: 5 },
         theme: "dark",
     };
@@ -802,27 +807,33 @@ $(function () {
     });
 
 
-    // Sticky menu
+    // Mobile menu
     const mobile_menu = document.querySelectorAll(".mobile_dropdown");
     mobile_menu.forEach((dropdown) => {
         const innerMenu = dropdown.querySelector(".inner_menu");
-        dropdown.addEventListener("click", () => {
-            if (innerMenu.style.maxHeight) {
-                innerMenu.style.maxHeight = null;
-                dropdown.classList.remove("active");
-            } else {
-                mobile_menu.forEach((item) => {
-                    const menu = item.querySelector(".inner_menu");
-                    if (menu !== innerMenu) {
-                        menu.style.maxHeight = null;
-                        item.classList.remove("active");
-                    }
-                });
-                innerMenu.style.maxHeight = innerMenu.scrollHeight + "px";
-                dropdown.classList.add("active");
-            }
-        });
+    
+        // Only add the event listener if innerMenu exists
+        if (innerMenu) {
+            dropdown.addEventListener("click", () => {
+                if (innerMenu.style.maxHeight) {
+                    innerMenu.style.maxHeight = null;
+                    dropdown.classList.remove("active");
+                } else {
+                    mobile_menu.forEach((item) => {
+                        const menu = item.querySelector(".inner_menu");
+                        if (menu) {  // Check if menu exists
+                            menu.style.maxHeight = null;
+                            item.classList.remove("active");
+                        }
+                    });
+                    innerMenu.style.maxHeight = innerMenu.scrollHeight + "px";
+                    dropdown.classList.add("active");
+                }
+            });
+        }
     });
+    
+    
 
 
     // WOW js

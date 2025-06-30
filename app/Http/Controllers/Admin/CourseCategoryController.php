@@ -36,22 +36,22 @@ class CourseCategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(CourseCategoryStoreRequest $request) : RedirectResponse
-{
-    $imagePath = $this->uploadFile($request->file('image'));
+    {
+        $imagePath = $this->uploadFile($request->file('image'));
+        
+        $category = new CourseCategory();
+        $category->image = $imagePath;
+        $category->icon = $request->icon;
+        $category->name = $request->name;
+        $category->slug = \Str::slug($request->name);
+        $category->show_at_trending = $request->show_at_treading ?? 0;
+        $category->status = $request->status ?? 0;
+        $category->save();
 
-    CourseCategory::create([
-        'image' => $imagePath,
-        'icon' => $request->icon,
-        'name' => $request->name,
-        'slug' => \Str::slug($request->name),
-        'show_at_trending' => $request->boolean('show_at_trending'), // ✅ Đổi thành boolean
-        'status' => $request->boolean('status'), // ✅ Đổi thành boolean
-    ]);
+        notyf()->success("Created Successfully!");
 
-    notyf()->success("Created Successfully!");
-    return to_route('admin.course-categories.index');
-}
-
+        return to_route('admin.course-categories.index');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -64,28 +64,28 @@ class CourseCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(CourseCategoryUpdateRequest $request, CourseCategory $course_category)
-    // {
-    //     // dd($request->all());
-    //     $category = $course_category;
+    public function update(CourseCategoryUpdateRequest $request, CourseCategory $course_category)
+    {
+        // dd($request->all());
+        $category = $course_category;
 
-    //     if($request->hasFile('image')) {
-    //         $imagePath = $this->uploadFile($request->file('image'));
-    //         $this->deleteFile($category->image);
-    //         $category->image = $imagePath;
-    //     }
+        if($request->hasFile('image')) {
+            $imagePath = $this->uploadFile($request->file('image'));
+            $this->deleteFile($category->image);
+            $category->image = $imagePath;
+        }
+        
+        $category->icon = $request->icon;
+        $category->name = $request->name;
+        $category->slug = \Str::slug($request->name);
+        $category->show_at_trending = $request->show_at_treading ?? 0;
+        $category->status = $request->status ?? 0;
+        $category->save();
 
-    //     $category->icon = $request->icon;
-    //     $category->name = $request->name;
-    //     $category->slug = \Str::slug($request->name);
-    //     $category->show_at_trending = $request->show_at_treading ?? 0;
-    //     $category->status = $request->status ?? 0;
-    //     $category->save();
+        notyf()->success("Updated Successfully!");
 
-    //     notyf()->success("Updated Successfully!");
-
-    //     return to_route('admin.course-categories.index');
-    // }
+        return to_route('admin.course-categories.index');
+    }
 
     /**
      * Remove the specified resource from storage.

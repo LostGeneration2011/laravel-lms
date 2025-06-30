@@ -20,7 +20,7 @@ class InstructorRequestController extends Controller
     {
         $instructorsRequests = User::where('approve_status', 'pending')
             ->orWhere('approve_status', 'rejected')->get();
-        return view('admin.instructor-requests.index', compact('instructorsRequests'));
+        return view('admin.instructor-request.index', compact('instructorsRequests'));
     }
 
     function download(User $user)

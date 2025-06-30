@@ -2698,7 +2698,7 @@ header .wsus__header_right li .nice-select .list {
 .wsus__single_testimonial::after {
     position: absolute;
     content: "";
-    background: url(../images/testimonial_shapes.png);
+    
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -5039,9 +5039,9 @@ footer {
 .wsus__banner_3_img .circle_box::after {
     position: absolute;
     content: "";
-    width: 50px;
-    height: 50px;
-    background: url(../images/banner_3_img_shapes.png);
+    width: 100px;
+    height: 100px;
+    background: url(../images/AnhDinh.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -5271,9 +5271,9 @@ footer {
 .wsus__about_3_img .circle_box::after {
     position: absolute;
     content: "";
-    width: 50px;
-    height: 50px;
-    background: url(../images/banner_3_img_shapes.png);
+    width: 100px;
+    height: 100px;
+    background: url(../images/AnhDinh.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

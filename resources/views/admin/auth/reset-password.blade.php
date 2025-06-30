@@ -38,14 +38,6 @@
     </form>
 </x-guest-layout> --}}
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta20
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
 <html lang="en">
 
 <head>
@@ -60,7 +52,7 @@
     <link href="{{ asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
     <style>
-        <style>@import url('https://rsms.me/inter/inter.css');
+        @import url('https://rsms.me/inter/inter.css');
 
         :root {
             --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
@@ -70,7 +62,7 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
-     @vite(['resources/js/admin/login.js'])
+    @vite(['resources/js/admin/login.js'])
 </head>
 
 <body class=" d-flex flex-column">
@@ -83,32 +75,34 @@
                         class="navbar-brand-image">
                 </a>
             </div>
+
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
             <div class="card card-md">
-                <x-auth-session-status class="mb-4" :status="session('status')" />
                 <div class="card-body">
-                    <h2 class="h2 text-center">Reset Password</h2>
+                    <h2 class="h2 text-center">Rest Password</h2>
+
                     <form action="{{ route('admin.password.store') }}" method="POST" autocomplete="off" novalidate>
                         @csrf
-
                         <!-- Password Reset Token -->
                         <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                        
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
-                            <input type="email" name="email" value="{{ old('email', $request->email) }}"
-                                class="form-control" placeholder="your@email.com" autocomplete="off" required>
+
+                            <input type="email" name="email" value="{{ old('email', $request->email) }}" class="form-control"
+                                placeholder="your@email.com" autocomplete="off" required>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
-
 
                         <div class="mb-2">
                             <label class="form-label">
                                 Password
-
+                               
                             </label>
                             <div class="input-group input-group-flat">
                                 <input type="password" class="form-control password" name="password" placeholder="Your password"
                                     autocomplete="off" required>
-
 
                                 <span class="input-group-text toggle-password">
                                     <a href="javascript:;" class="link-secondary" title="Show password"
@@ -129,12 +123,11 @@
                         <div class="mb-2">
                             <label class="form-label">
                                 Confirm Password
-
+                                
                             </label>
                             <div class="input-group input-group-flat">
                                 <input type="password" class="form-control confirm-password" name="password_confirmation" placeholder="Your password"
                                     autocomplete="off" required>
-
 
                                 <span class="input-group-text toggle-confirm-password">
                                     <a href="javascript:;" class="link-secondary" title="Show password"
@@ -154,22 +147,21 @@
                         </div>
 
 
-
-
+                 
 
                         <div class="form-footer">
                             <button type="submit" class="btn btn-primary w-100">Reset Password</button>
                         </div>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
     <!-- Libs JS -->
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
     <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}" defer></script>
+</body>
 
 </html>
+

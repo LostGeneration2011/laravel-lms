@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -21,6 +20,7 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'bio'
     ];
 
     /**

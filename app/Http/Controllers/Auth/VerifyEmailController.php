@@ -13,15 +13,22 @@ class VerifyEmailController extends Controller
      * Mark the authenticated user's email address as verified.
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('dashboard', absolute: false).'?verified=1');
-        }
+{
+    $user = $request->user();
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
-
-        return redirect()->intended(route('dashboard', absolute: false).'?verified=1');
+    // Nếu đã verify rồi thì chỉ redirect tiếp
+    if (! $user->hasVerifiedEmail()) {
+        $user->markEmailAsVerified();
+        event(new Verified($user));
     }
+
+    // Chọn route dựa vào role
+    $routeName = $user->role === 'instructor'
+        ? 'instructor.dashboard'
+        : 'student.dashboard';
+
+    // Redirect kèm thông số ?verified=1
+    return redirect()->route($routeName, ['verified' => 1]);
+}
+
 }

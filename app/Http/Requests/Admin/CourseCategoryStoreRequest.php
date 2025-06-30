@@ -24,7 +24,7 @@ class CourseCategoryStoreRequest extends FormRequest
         return [
             'image' => ['required', 'image', 'max:3000'],
             'name' => ['required', 'string', 'max:255', 'unique:course_categories,name'],
-            'show_at_trending' => ['nullable', 'boolean'],
+            'show_at_treading' => ['nullable', 'boolean'],
             'status' => ['nullable', 'boolean'],
         ];
     }

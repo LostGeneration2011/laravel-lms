@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class SocialUpdateRequest extends FormRequest
 {
     /**
-     * Xác định xem người dùng có được phép thực hiện yêu cầu này hay không".
+     * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
@@ -15,7 +15,7 @@ class SocialUpdateRequest extends FormRequest
     }
 
     /**
-     * Lấy các quy tắc xác thực áp dụng cho yêu cầu này.
+     * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */

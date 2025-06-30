@@ -9,7 +9,7 @@
                     <div class="card-actions">
                         <a href="{{ route('admin.course-categories.index') }}" class="btn btn-primary">
                             <i class="ti ti-arrow-left"></i>
-                            Back
+                            Back 
                         </a>
                     </div>
                 </div>
@@ -21,25 +21,24 @@
                                 <x-input-file-block name="image" />
                             </div>
 
-
+                            
                             <div class="col-md-12">
                                 <x-input-block name="name" placeholder="Enter category name" />
                             </div>
 
                             <div class="col-md-3">
-                                <x-input-toggle-block name="show_at_trending" label="Show at Trending" :checked="old('show_at_trending', false)" />
-
+                                <x-input-toggle-block name="show_at_treading" label="Show at Trading" />
                             </div>
                             <div class="col-md-3">
                                 <x-input-toggle-block name="status" label="Status" />
                             </div>
 
-
+                           
                         </div>
 
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit">
-                                <i class="ti ti-device-floppy"></i>
+                                <i class="ti ti-device-floppy"></i>  
                                 Create
                             </button>
                         </div>

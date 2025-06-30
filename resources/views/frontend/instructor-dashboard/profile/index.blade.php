@@ -40,7 +40,7 @@
                                 <h5>Update Your Information</h5>
                                 <p>Manage your courses and its update like live, draft and insight.</p>
                             </div>
-
+                           
                         </div>
 
 
@@ -84,7 +84,7 @@
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-xl-6">
                                     <div class="wsus__dashboard_profile_update_info ">
                                         <label>Gender</label>
@@ -118,12 +118,12 @@
                                 <h5>Payout Settings</h5>
                                 <p>Put your payout information here.</p>
                             </div>
-
+                           
                         </div>
 
                         <form action="{{ route('instructor.profile.update-gateway-info') }}" method="POST" class="wsus__dashboard_profile_update">
                             @csrf
-                            {{-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="wsus__dashboard_profile_update_info">
                                         @foreach($gateways as $gateway)
@@ -138,19 +138,19 @@
                                         </select>
                                         <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
                                     </div>
-                                </div> --}}
+                                </div>
 
-                                {{-- <div class="col-md-12">
+                                <div class="col-md-12">
                                     <div class="wsus__dashboard_profile_update_info">
                                         <label>Gateway Information</label>
                                         <textarea name="information" id="" style="height: 300px" class="form-control gateway_description">{!! user()?->gatewayInfo?->information !!}</textarea>
                                         <x-input-error :messages="$errors->get('gateway_info')" class="mt-2" />
                                     </div>
-                                </div> --}}
-
-
-
-
+                                </div>
+                               
+                                
+                                
+                                
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_btn">
                                         <button type="submit" class="common_btn">Update Info</button>
@@ -166,10 +166,10 @@
                                 <h5>Update Your Email/Password</h5>
                                 <p>Add your new email or password here to update.</p>
                             </div>
-
+                           
                         </div>
 
-
+                     
 
                         <form action="{{ route('instructor.profile.update-password') }}" method="POST" class="wsus__dashboard_profile_update">
                             @csrf
@@ -195,9 +195,9 @@
                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>
                                 </div>
-
-
-
+                                
+                                
+                                
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_btn">
                                         <button type="submit" class="common_btn">Update Password</button>
@@ -213,7 +213,7 @@
                                 <h5>Update Social Information</h5>
                                 <p>Put your social links here.</p>
                             </div>
-
+                            
                         </div>
 
                         <form action="{{ route('instructor.profile.update-social') }}" method="POST" class="wsus__dashboard_profile_update">
@@ -253,12 +253,12 @@
                                         <button type="submit" class="common_btn">Update Socials</button>
                                     </div>
                                 </div>
-
+                                
                             </div>
                         </form>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </section>
@@ -270,9 +270,9 @@
  <script>
     $(function() {
         $('.gateway').on('change', function() {
-            let id = $(this).find(':selected').data('id');
-            $('.gateway_description').attr('placeholder', $('.gateway-'+id).html())
+            let id = $(this).find(':selected').data('id'); 
+            $('.gateway_description').attr('placeholder', $('.gateway-'+id).html())  
         })
     })
- </script>
+ </script>   
 @endpush

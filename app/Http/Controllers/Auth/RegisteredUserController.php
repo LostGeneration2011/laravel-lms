@@ -32,45 +32,46 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
+        // Validate all incoming fields, including the 'type'
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'type'                  => ['required', 'in:student,instructor'],
+            'name'                  => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password'              => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if($request->type === 'student'){
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => 'student',
-                'approve_status' => 'approved'
-            ]);
-        }elseif($request->type === 'instructor') {
-            $request->validate(['document' => ['required', 'mimes:pdf,doc,docx,jpg,png', 'max:12000']]);
-            $filePath = $this->uploadFile($request->file('document'));
+        // Determine role and approval status
+        $role    = $request->input('type');
+        $approve = $role === 'student' ? 'approved' : 'pending';
 
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => 'student',
-                'approve_status' => 'pending',
-                'document' => $filePath
+        // Base data for creating the user
+        $data = [
+            'name'           => $request->input('name'),
+            'email'          => $request->input('email'),
+            'password'       => Hash::make($request->input('password')),
+            'role'           => $role,
+            'approve_status' => $approve,
+        ];
+
+        // If instructor, handle document upload
+        if ($role === 'instructor') {
+            $request->validate([
+                'document' => ['required', 'mimes:pdf,doc,docx,jpg,png', 'max:12000'],
             ]);
-        }else {
-            abort(404);
+
+            $data['document'] = $this->uploadFile($request->file('document'));
         }
 
+        // Create and log in the user
+        $user = User::create($data);
         event(new Registered($user));
-
         Auth::login($user);
 
-        if($request->user()->role == 'student') {
-            return redirect()->intended(route('student.dashboard', absolute: false));
-        }elseif($request->user()->role == 'instructor') {
-            return redirect()->intended(route('instructor.dashboard', absolute: false));
+        // Redirect based on role
+        if ($user->role === 'student') {
+            return redirect()->route('student.dashboard');
         }
+
+        return redirect()->route('instructor.dashboard');
     }
 }

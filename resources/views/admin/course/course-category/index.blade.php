@@ -28,7 +28,7 @@
                             <tbody>
                                 @forelse ($categories as $category)
                                     <tr>
-                                        <td><img src="{{ asset($category->image) }}" alt=""></td>
+                                        <td><img src="{{ asset($category->image) }}" alt="" style="width:40px; height:40px; object-fit:cover;"></td>
                                         <td>{{ $category->name }}</td>
                                         <td>
                                             @if ($category->show_at_trending == 1)

@@ -15,7 +15,7 @@ class ProfileUpdateRequest extends FormRequest
     }
 
     /**
-     * Lấy các quy tắc kiểm tra hợp lệ áp dụng cho yêu cầu này.
+     * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */

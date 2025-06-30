@@ -1,12 +1,4 @@
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta20
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
 <html lang="en">
 
 <head>
@@ -21,7 +13,7 @@
     <link href="{{ asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
     <style>
-        <style>@import url('https://rsms.me/inter/inter.css');
+        @import url('https://rsms.me/inter/inter.css');
 
         :root {
             --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
@@ -43,40 +35,38 @@
                         class="navbar-brand-image">
                 </a>
             </div>
+
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
             <div class="card card-md">
-                <x-auth-session-status class="mb-4" :status="session('status')" />
                 <div class="card-body">
-                   <span class="text-muted">Forgot your password? No problem. Just let us know your
-                    email address and we will email you a password reset link that will allow you to choose a new one.</span>
+                    <span class="text-muted">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</span>
                     <br>
                     <br>
+
                     <form action="{{ route('admin.password.email') }}" method="POST" autocomplete="off" novalidate>
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Email address</label>
+
                             <input type="email" name="email" value="{{ old('email') }}" class="form-control"
                                 placeholder="your@email.com" autocomplete="off" required>
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
-
-
-
-
-
                         <div class="form-footer">
-                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                            <button type="submit" class="btn btn-primary w-100">Email Password Reset Link</button>
                         </div>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
     <!-- Libs JS -->
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
     <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}" defer></script>
+</body>
 
 </html>
+

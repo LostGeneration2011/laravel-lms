@@ -12,7 +12,7 @@
         </div>
         <ul class="wsus__dashboard_sidebar_menu">
             <li>
-                <a href="{{ route('student.dashboard') }}" class="">
+                <a href="{{ route('student.dashboard') }}" class="{{ sidebarItemActive(['student.dashboard']) }}">
                     <div class="img">
                         <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon" class="img-fluid w-100">
                     </div>
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('student.profile.index') }}" class="">
+                <a href="{{ route('student.profile.index') }}" class="{{ sidebarItemActive(['student.profile.index']) }}">
                     <div class="img">
                         <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon" class="img-fluid w-100">
                     </div>
@@ -29,23 +29,23 @@
             </li>
 
             <li>
-                <a href="" class="">
+                <a href="{{ route('student.enrolled-courses.index') }}" class="{{ sidebarItemActive(['student.enrolled-courses.index']) }}">
                     <div class="img">
                         <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon" class="img-fluid w-100">
                     </div>
-                   Enrolled Courses
+                   Enrolled Courses 
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('student.orders.index') }}" class="{{ sidebarItemActive(['student.review.index']) }}">
                     <div class="img">
                         <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon" class="img-fluid w-100">
                     </div>
-                  Orders
+                  Orders 
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('student.review.index') }}" class="{{ sidebarItemActive(['student.review.index']) }}">
                     <div class="img">
                         <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon" class="img-fluid w-100">
                     </div>

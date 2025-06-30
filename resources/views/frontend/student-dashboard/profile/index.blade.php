@@ -40,7 +40,7 @@
                                 <h5>Update Your Information</h5>
                                 <p>Manage your courses and its update like live, draft and insight.</p>
                             </div>
-
+                           
                         </div>
 
 
@@ -84,7 +84,7 @@
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-xl-6">
                                     <div class="wsus__dashboard_profile_update_info ">
                                         <label>Gender</label>
@@ -117,10 +117,10 @@
                                 <h5>Update Your Email/Password</h5>
                                 <p>Add your new email or password here to update.</p>
                             </div>
-
+                           
                         </div>
 
-
+                     
 
                         <form action="{{ route('student.profile.update-password') }}" method="POST" class="wsus__dashboard_profile_update">
                             @csrf
@@ -146,9 +146,9 @@
                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>
                                 </div>
-
-
-
+                                
+                                
+                                
                                 <div class="col-xl-12">
                                     <div class="wsus__dashboard_profile_update_btn">
                                         <button type="submit" class="common_btn">Update Password</button>
@@ -163,7 +163,7 @@
                                 <h5>Update Social Information</h5>
                                 <p>Put your social links here.</p>
                             </div>
-
+                            
                         </div>
 
                         <form action="{{ route('student.profile.update-social') }}" method="POST" class="wsus__dashboard_profile_update">
@@ -203,12 +203,12 @@
                                         <button type="submit" class="common_btn">Update Socials</button>
                                     </div>
                                 </div>
-
+                                
                             </div>
                         </form>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </section>

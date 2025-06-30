@@ -6,7 +6,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href=".">
-                <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                <img src="{{ asset(config('settings.site_logo')) }}" width="110" height="32" alt="" class="navbar-brand-image">
             </a>
         </h1>
         <div class="navbar-nav flex-row d-lg-none">
@@ -191,9 +191,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Status</a>
-                    <a href="./profile.html" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Feedback</a>
+                    <a href="{{ route('admin.profile.index') }}" class="dropdown-item">Profile</a>
                     <div class="dropdown-divider"></div>
                     <a href="./settings.html" class="dropdown-item">Settings</a>
                     <a href="./sign-in.html" class="dropdown-item">Logout</a>
@@ -202,93 +200,362 @@
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="./">
+                <li class="nav-item {{ sidebarItemActive(['admin.dashboard']) }}">
+                    <a class="nav-link"  href="{{ route('admin.dashboard') }}">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                            </svg>
+                            <i class="ti ti-home"></i>
                         </span>
                         <span class="nav-link-title">
-                            Home
+                            Dashboard
                         </span>
                     </a>
                 </li>
-
-                <li class="nav-item">
+                <li class="nav-item {{ sidebarItemActive(['admin.instructor-requests.index']) }}">
                     <a class="nav-link" href="{{ route('admin.instructor-requests.index') }}">
                         <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                            </svg>
+                        class="nav-link-icon d-md-none d-lg-inline-block">
+                        <i class="ti ti-help-hexagon"></i>
                         </span>
                         <span class="nav-link-title">
                             Instructor Requests
                         </span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ sidebarItemActive(['admin.courses.*', 'admin.course-categories.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.reviews.*']) }}">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                                <path d="M12 12l8 -4.5" />
-                                <path d="M12 12l0 9" />
-                                <path d="M12 12l-8 -4.5" />
-                                <path d="M16 5.25l-8 4.5" />
-                            </svg>
+                            <i class="ti ti-book"></i>
                         </span>
                         <span class="nav-link-title">
                             Course Management
                         </span>
                     </a>
+
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
-
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.course-categories.index') }}">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.courses.*']) }}" href="{{ route('admin.courses.index') }}">
+                                    Courses
+                                </a>
+
+                            </div>
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.course-categories.*']) }}" href="{{ route('admin.course-categories.index') }}">
                                     Course Categories
                                 </a>
 
                             </div>
-
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.course-languages.index') }}">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.course-languages.*']) }}" href="{{ route('admin.course-languages.index') }}">
                                     Course Languages
                                 </a>
 
                             </div>
 
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.course-levels.*']) }}" href="{{ route('admin.course-levels.index') }}">
                                     Course Levels
                                 </a>
 
                             </div>
 
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.reviews.*']) }}" href="{{ route('admin.reviews.index') }}">
+                                    Course Reviews
+                                </a>
 
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item {{ sidebarItemActive(['admin.certificate-builder.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
+
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="ti ti-certificate"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Certificate Builder
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ sidebarItemActive(['admin.orders.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">
+
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                           <i class="ti ti-shopping-cart"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Orders
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item {{ sidebarItemActive(['admin.withdraw-request.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                           <i class="ti ti-coins"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Payout Requests
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown {{ sidebarItemActive(['admin.blogs.*', 'admin.blog-categories.*']) }}">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                            <i class="ti ti-brand-blogger"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Content Management
+                        </span>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.blog-categories.*']) }}" href="{{ route('admin.blog-categories.index') }}">
+                                   Blog Categoires
+                                </a>
+
+                            </div>
+                           
+                        </div>
+
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.blogs.*']) }}" href="{{ route('admin.blogs.index') }}">
+                                    Blogs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item {{ sidebarItemActive(['admin.payout-gateway.*']) }}">
+                    <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
+
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="ti ti-cash"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Payout Gateways
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown {{ sidebarItemActive(['admin.hero.*', 'admin.feature.*', 'admin.counter-section.*', 'admin.about-section.*','admin.testimonial-section.*', 'admin.video-section.*','admin.featured-instructor-section.*', 'admin.brand-section.*', 'admin.latest-courses-section.*', 'admin.become-instructor-section.*']) }}">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                            <i class="ti ti-layout-grid"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Sections
+                        </span>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                           
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.hero.*']) }}" href="{{ route('admin.hero.index') }}">
+                                    Hero
+                                </a>
+
+                            </div>
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.feature.*']) }}" href="{{ route('admin.feature.index') }}">
+                                    Features
+                                </a>
+
+                            </div>
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.about-section.*']) }}" href="{{ route('admin.about-section.index') }}">
+                                    About Us
+                                </a>
+
+                            </div>
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.latest-courses-section.*']) }}" href="{{ route('admin.latest-courses-section.index') }}">
+                                    Latest Courses
+                                </a>
+                            </div>
+                           
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.become-instructor-section.*']) }}" href="{{ route('admin.become-instructor-section.index') }}">
+                                    Become Instructor Banner
+                                </a>
+                            </div>
+
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.video-section.*']) }} " href="{{ route('admin.video-section.index') }}">
+                                    Video
+                                </a>
+                            </div>
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.brand-section.*']) }}" href="{{ route('admin.brand-section.index') }}">
+                                    Brand
+                                </a>
+                            </div>
+
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.featured-instructor-section.*']) }}" href="{{ route('admin.featured-instructor-section.index') }}">
+                                   Featured Instructor 
+                                </a>
+                            </div>
+
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.testimonial-section.*']) }}" href="{{ route('admin.testimonial-section.index') }}">
+                                    Testimonial
+                                </a>
+                            </div>
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.counter-section.*']) }}" href="{{ route('admin.counter-section.index') }}">
+                                   Counter 
+                                </a>
+                            </div>
 
                         </div>
                     </div>
                 </li>
 
+                
+
+                <li class="nav-item dropdown {{ sidebarItemActive(['admin.contact.*', 'admin.contact-setting.*']) }}">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                            <i class="ti ti-address-book"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Contact
+                        </span>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.contact.*']) }}" href="{{ route('admin.contact.index') }}">
+                                   Contact Cards 
+                                </a>
+
+                            </div>
+                           
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.contact-setting.*']) }}" href="{{ route('admin.contact-setting.index') }}">
+                                   Contact Setting 
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown {{ sidebarItemActive(['admin.top-bar.*', 'admin.footer.*', 'admin.footer-column-one.*', 'admin.footer-column-two.*', 'admin.social-links.*']) }}">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                            <i class="ti ti-layout-navbar"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Header / Footer
+                        </span>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.top-bar.*']) }}" href="{{ route('admin.top-bar.index') }}">
+                                   Top Bar
+                                </a>
+                            </div>
+                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.footer.*']) }}" href="{{ route('admin.footer.index') }}">
+                                  Footer Content 
+                                </a>
+                            </div>                          
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.footer-column-one.index']) }}" href="{{ route('admin.footer-column-one.index') }}">
+                                  Footer Column One
+                                </a>
+                            </div> 
+                            <div class="dropdown-menu-column ">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.footer-column-two.*']) }}" href="{{ route('admin.footer-column-two.index') }}">
+                                  Footer Column Two 
+                                </a>
+                            </div> 
+                            <div class="dropdown-menu-column ">
+                                <a class="dropdown-item {{ sidebarItemActive(['admin.social-links.*']) }}" href="{{ route('admin.social-links.index') }}">
+                                  Social Links
+                                </a>
+                            </div>  
+                            
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ sidebarItemActive(['admin.custom-page.*']) }}" href="{{ route('admin.custom-page.index') }}">
+
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="ti ti-app-window"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Custom Pages
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ sidebarItemActive(['admin.payment-setting.*']) }}" href="{{ route('admin.payment-setting.index') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                           <i class="ti ti-adjustments"></i>
+                        </span>
+                        <span class="nav-link-title ">
+                            Payment Settings
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ sidebarItemActive(['admin.settings.*']) }}" href="{{ route('admin.settings.index') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="ti ti-settings"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Settings
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ sidebarItemActive(['admin.database-clear.*']) }}" href="{{ route('admin.database-clear.index') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <i class="ti ti-skull"></i>
+                        </span>
+                        <span class="nav-link-title">
+                           Database Clear 
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
